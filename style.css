@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+.app {
+  background: #020617;
+  padding: 2rem;
+  width: 300px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.timer {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+select, button {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: none;
+  margin-top: 0.5rem;
+}
+
+button {
+  background: #38bdf8;
+  color: #020617;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button#stop {
+  background: #334155;
+  color: white;
+}

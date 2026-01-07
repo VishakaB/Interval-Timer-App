@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Interval Timer</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="app">
+    <h1>⏰ Interval Timer</h1>
+
+    <div id="display" class="timer">05:00</div>
+
+    <label>
+      Interval
+      <select id="interval">
+        <option value="0.25">15 secs</option>
+        <option value="0.5">30 secs</option>
+        <option value="1">1 min</option>
+        <option value="2">2 mins</option>
+        <option value="5" selected>5</option>
+        <option value="10">10 mins</option>
+        <option value="15">15 mins</option>
+      </select>
+    </label>
+
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
