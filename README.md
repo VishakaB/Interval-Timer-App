@@ -25,7 +25,9 @@ The timer app takes the time interval, and current time as the input. When the s
 
 - Step 3: App deployment
 
-The app is deployed using Vercel. Vercel imports the code from Github, and deploys the app in the web by exposing the app via a publicly accessible URL.
+The app is deployed using Vercel. Vercel imports the code from Github, and deploys the app in the web by exposing the app via a publicly accessible URL. 
+
+URL: https://interval-timer-app-git-main-vishakabs-projects.vercel.app/
 
 
 
