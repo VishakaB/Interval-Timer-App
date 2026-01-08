@@ -8,7 +8,7 @@ The user requires a real time clock aligned interval timer. The user wants to ge
 - Create a progressive web app, PWA (website that uses modern web features to behave like a native app), using HTML for frontend, Javascript for backend, and deploy it as a webapp using Vercel accessible to anyone
 
 ## Steps of building the App
-```text
+
 - Step 1: Project Structure
 
 interval-timer-app/
@@ -26,7 +26,7 @@ The timer app takes the time interval, and current time as the input. When the s
 - Step 3: App deployment
 
 The app is deployed using Vercel. Vercel imports the code from Github, and deploys the app in the web by exposing an external URL.
-```
+
 
 
 
