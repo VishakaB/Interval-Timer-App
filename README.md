@@ -10,7 +10,7 @@ The user requires a real time clock aligned interval timer. The user wants to ge
 ## Steps of building the App
 
 - Step 1: Project Structure
-
+```text
 interval-timer-app/
 ├─ index.html        # Frontend UI
 ├─ style.css         # Styling
@@ -18,7 +18,7 @@ interval-timer-app/
 ├─ manifest.json     # PWA metadata
 ├─ sw.js             # Service Worker (offline support & caching)
 ├─ alarm.mp3         # Audio alert sound
-
+```
 - Step 2: Timer App Logic
 
 The timer app takes the time interval, and current time as the input. When the start button is clicked, it computes the remaining time for that interval and displays it on the app interface. Once the time is reached it runs the audio file, and resets the interval back to the initial time interval. Once the stop button is clicked, it clears the remaining time data from the cache, and resets the time values.
