@@ -8,15 +8,14 @@ The user requires a real time clock aligned interval timer. The user wants to ge
 - Create a progressive web app, PWA (website that uses modern web features to behave like a native app), using HTML for frontend, Javascript for backend, and deploy it as a webapp using Vercel accessible to anyone
 
 ## Steps of building the App
-- Step 1: Decide the required project Structure and files
-
--  interval-timer-app/
-    ├─ index.html (frontend)
-    ├─ style.css (frontend styling)
-    ├─ app.js (backend app logic)
-    ├─ manifest.json (metadata file with app deployment details)
-    ├─ sw.js (enable PWA, offline access, caching, fast loading)
-    ├─ alarm.mp3 (audito file for ring)
+```text
+interval-timer-app/
+├─ index.html        # Frontend UI
+├─ style.css         # Styling
+├─ app.js            # Timer logic and app behavior
+├─ manifest.json     # PWA metadata
+├─ sw.js             # Service Worker (offline support & caching)
+├─ alarm.mp3         # Audio alert sound
 
 - Step 2: Timer App Logic
 
