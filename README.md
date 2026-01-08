@@ -22,6 +22,10 @@ The user requires a real time clock aligned interval timer. The user wants to ge
 
 The timer app takes the time interval, and current time as the input. When the start button is clicked, it computes the remaining time for that interval and displays it on the app interface. Once the time is reached it runs the audio file, and resets the interval back to the initial time interval. Once the stop button is clicked, it clears the remaining time data from the cache, and resets the time values.
 
+- Step 3: App deployment
+
+The app is deployed using Vercel. Vercel imports the code from Github, and deploys the app in the web by exposing an external URL.
+
 
 
 
