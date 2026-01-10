@@ -34,7 +34,7 @@ function startTimer() {
 
   timerId = setInterval(tick, 1000);
 
-  alarm.play().then(() => alarm.pause());
+
 }
 
 function tick() {
@@ -50,7 +50,7 @@ function tick() {
 
 function ring() {
   alarm.currentTime = 0;
-  alarm.play();
+  alarm.play().then(() => alarm.pause());
 
   if (Notification.permission === "granted") {
     new Notification("⏰ Interval Timer", {
