@@ -73,7 +73,7 @@ function stopTimer() {
 // }
 
 function ring() {
-  let alarmDurationMs = 2500;
+  let alarmDurationMs = 5000;
   alarm.currentTime = 0;
   alarm.play();
   setTimeout(() => {
