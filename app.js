@@ -1,4 +1,5 @@
 const display = document.getElementById("display");
+const currentTimeEl = document.getElementById("currentTime");
 const startBtn = document.getElementById("start");
 const stopBtn = document.getElementById("stop");
 const intervalSelect = document.getElementById("interval");
@@ -49,8 +50,13 @@ function tick() {
 }
 
 function ring() {
+  let alarmDurationMs = 2500;
   alarm.currentTime = 0;
-  alarm.play().then(() => alarm.pause());
+  alarm.play();
+  setTimeout(() => {
+    alarm.pause();
+    alarm.currentTime = 0;
+  }, alarmDurationMs);
 
   if (Notification.permission === "granted") {
     new Notification("⏰ Interval Timer", {
@@ -71,7 +77,6 @@ async function requestNotificationPermission() {
     await Notification.requestPermission();
   }
 }
-
 
 function updateDisplay(ms) {
   const totalSeconds = Math.max(0, Math.floor(ms / 1000));
