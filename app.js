@@ -15,39 +15,62 @@ startBtn.addEventListener("click", async () => {
   await unlockAudio();
   await requestNotificationPermission();
 
+  startClock();
   scheduleNextAlarm();
 });
+
+let clockIntervalId = null;
+
+function startClock() {
+  updateCurrentTime();
+
+  if (clockIntervalId) return;
+
+  clockIntervalId = setInterval(updateCurrentTime, 1000);
+}
+
+function updateCurrentTime() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2, "0");
+  const m = String(now.getMinutes()).padStart(2, "0");
+  const s = String(now.getSeconds()).padStart(2, "0");
+
+  currentTimeEl.textContent = `${h}:${m}:${s}`;
+}
 
 stopBtn.addEventListener("click", stopTimer);
 
 function stopTimer() {
   clearTimeout(timeoutId);
   timeoutId = null;
+
+  clearInterval(clockIntervalId); // ✅ stop clock
+  clockIntervalId = null;
 }
 
-function startTimer() {
-  intervalMs = Number(intervalSelect.value) * 60 * 1000;
-  endTime = Date.now() + intervalMs;
+// function startTimer() {
+//   intervalMs = Number(intervalSelect.value) * 60 * 1000;
+//   endTime = Date.now() + intervalMs;
 
-  updateDisplay(intervalMs);
+//   updateDisplay(intervalMs);
 
-  if (timerId) return;
+//   if (timerId) return;
 
-  timerId = setInterval(tick, 1000);
+//   timerId = setInterval(tick, 1000);
 
 
-}
+// }
 
-function tick() {
-  const remaining = endTime - Date.now();
+// function tick() {
+//   const remaining = endTime - Date.now();
 
-  if (remaining <= 0) {
-    ring();
-    endTime = Date.now() + intervalMs;
-  }
+//   if (remaining <= 0) {
+//     ring();
+//     endTime = Date.now() + intervalMs;
+//   }
 
-  updateDisplay(remaining);
-}
+//   updateDisplay(remaining);
+// }
 
 function ring() {
   let alarmDurationMs = 2500;
@@ -89,7 +112,10 @@ function updateCountdown(targetMs) {
   function tick() {
     const remaining = targetMs - Date.now();
 
-    if (remaining <= 0) return;
+    if (remaining <= 0) {
+      display.textContent = "00:00";
+      return;
+    }
 
     displayTime(remaining);
     requestAnimationFrame(tick);
@@ -106,7 +132,6 @@ function displayTime(ms) {
   display.textContent = `${m}:${s}`;
 }
 
-
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
@@ -121,14 +146,6 @@ function getNextAlignedTime(intervalMinutes) {
     Math.ceil(nowMs / intervalMs) * intervalMs;
 
   return new Date(nextMs);
-}
-
-function displayTime(ms) {
-  const totalSeconds = Math.floor(ms / 1000);
-  const m = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
-  const s = String(totalSeconds % 60).padStart(2, "0");
-
-  display.textContent = `${m}:${s}`;
 }
 
 function scheduleNextAlarm() {
