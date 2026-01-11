@@ -3,8 +3,9 @@ const currentTimeEl = document.getElementById("currentTime");
 const startBtn = document.getElementById("start");
 const stopBtn = document.getElementById("stop");
 const intervalSelect = document.getElementById("interval");
-
-const alarm = new Audio("assets/alarm.mp3");
+//preload audio
+const alarm = new Audio("assets/alarm_.mp3");
+alarm.preload = "auto";
 
 let timeoutId = null;
 let intervalMinutes = 5;
@@ -48,38 +49,14 @@ function stopTimer() {
   clockIntervalId = null;
 }
 
-// function startTimer() {
-//   intervalMs = Number(intervalSelect.value) * 60 * 1000;
-//   endTime = Date.now() + intervalMs;
-
-//   updateDisplay(intervalMs);
-
-//   if (timerId) return;
-
-//   timerId = setInterval(tick, 1000);
 
 
-// }
 
-// function tick() {
-//   const remaining = endTime - Date.now();
-
-//   if (remaining <= 0) {
-//     ring();
-//     endTime = Date.now() + intervalMs;
-//   }
-
-//   updateDisplay(remaining);
-// }
-
-function ring() {
-  let alarmDurationMs = 7500;
+async function ring() {
   alarm.currentTime = 0;
-  alarm.play();
-  setTimeout(() => {
-    alarm.pause();
-    alarm.currentTime = 0;
-  }, alarmDurationMs);
+  try {
+    await alarm.play();
+  } catch {}
 
   if (Notification.permission === "granted") {
     new Notification("⏰ Interval Timer", {
@@ -89,10 +66,11 @@ function ring() {
 }
 
 async function unlockAudio() {
-  try {
-    await alarm.play();
-    alarm.pause();
-  } catch {}
+  alarm.muted = true;
+  await alarm.play();
+  alarm.pause();
+  alarm.currentTime = 0;
+  alarm.muted = false;
 }
 
 async function requestNotificationPermission() {
@@ -164,3 +142,10 @@ function scheduleNextAlarm() {
     scheduleNextAlarm(); // schedule the next boundary
   }, delay);
 }
+
+console.log(
+  "Now:",
+  new Date(now).toLocaleTimeString(),
+  "Next alarm:",
+  new Date(nextAlarmMs).toLocaleTimeString()
+);
